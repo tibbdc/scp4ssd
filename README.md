@@ -7,32 +7,32 @@ code of the paper 'SCP4SSD: a Serverless Cloud Platform for the prediction of nu
 - pandas=1.2.4
 - scikit-learn=0.24.2
 - numpy=1.20.2
+- auto-sklearn
 
-## Install
+## Installation
 
-1. clone the repo
+1. Clone the repo
 
 ```shell
 git clone https://github.com/JustinDoIt/scp4ssd.git
+cd scp4ssd
 ```
 
-2. create the conda env
+2. Create Anaconda Environment
 
 ```shell
 conda env create -f name.yml
 ```
 
-or install python packages via pip
+3. Activate the environment
 
 ```shell
-cd scp4ssd
-pip install -r requirements.txt
+conda activate scp4ssd
 ```
 
 ## Usage & Example
 
 ```shell
-cd scp4ssd
 python predict.py --fasta example.fna --out example_out.csv
 ```
 
