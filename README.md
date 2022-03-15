@@ -34,7 +34,7 @@ cd scp4ssd
 2. Create Anaconda Environment
 
 ```shell
-conda env create -f name.yml
+conda env create -f environment.yml
 ```
 
 3. Activate the environment
