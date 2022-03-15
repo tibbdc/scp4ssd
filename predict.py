@@ -55,43 +55,18 @@ def create_logger(name, silent=False, to_disk=True, log_file=None):
     return log
 
 ######################################################################################
-#          python predict.py --fasta example.fna --out example_out.csv                        #
+#      python predict.py --fasta ./examples/example.fna --out example_out.csv        #
 ######################################################################################
 
-def predict_fasta(data: pd.DataFrame, return_prob: bool = False):
-    # datadir = os.path.join('./result', re.split('/.', fasta)[-2], 'csv')
-    # if not os.path.exists(datadir):
-    #     calc_feat(fasta)
-    # data = pd.read_csv(datadir)
-    # print("Save feature successfully... start predicting...")
-    # assert len(data) > 
-    clf = load('./september/model/september.joblib')
+def predict(data: pd.DataFrame, return_prob: bool = False):
+    clf = load('./models/scp4ssd.joblib')
 
     prediction = np.expand_dims(clf.predict(data), axis=1)
-    prob = clf.predict_proba(data)
-    # print('-'*50)
-    # print(prediction.shape)
-    # print(prob.shape)
-    # print('-'*50)
-    if return_prob:    
+    
+    if return_prob:
+        prob = clf.predict_proba(data)
         return np.concatenate((prediction, prob), axis=1)
     return prediction
-
-def test_Ecoli_GCF_ASM584v2():
-    # fasta = './data/GCF_000005845.2_ASM584v2_cds_from_genomic.fna'
-    # fasta = './data/lt3000_4246.fna'
-    # fasta = './data/test_3.fna'
-    outdir = f'dachang4138_prediction.txt'
-    # if not os.path.exists(outdir):
-    #     os.makedirs(outdir)
-    fasta = './examples/example.fna'
-
-    datadir = './september/features/dachang4318_sep_feat-with-3000bp.csv'
-    
-    pd.DataFrame(predict_fasta()).to_csv(outdir)
-    print("Successfully saved.")
-    
-    
     
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -115,8 +90,8 @@ def main():
     # predict & save result
     savedir = args.out
     with open(savedir, 'w') as f:
-        f.write(str(predict_fasta(df))) # load model && predict
+        f.write(str(predict(df))) # load model && predict
 
 if __name__ == "__main__":
-    test_Ecoli_GCF_ASM584v2()
-    # main()
+    # test_Ecoli_GCF_ASM584v2()
+    main()

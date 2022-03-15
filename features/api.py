@@ -108,25 +108,24 @@ def write_csv_to_fna():
             f.write('\n')
     print("OK")
 
-def test_Ecoli():
-    # fasta = '../../data/GCF_ASM584v2_sorted_1000.fna'
-    fasta = '../../data/dachang4318-with-label.fna'
-    outdir = 'dachang4318_sep_feat-with-3000bp.csv'
-    calc_feat(fasta, outdir)
+# def test_Ecoli():
+#     # fasta = '../../data/GCF_ASM584v2_sorted_1000.fna'
+#     fasta = '../../data/dachang4318-with-label.fna'
+#     outdir = 'dachang4318_sep_feat-with-3000bp.csv'
+#     calc_feat(fasta, outdir)
     
-def test_10_seq():
-    dfdir = './10sequence.xlsx'
-    df = pd.read_excel(dfdir).loc[:, ['Sequence', 'label']]
-    fastadir = '10-seq.fna'
-    with open(fastadir, 'a') as f:
-        for index, row in df.iterrows():
-            f.write(f"> {row['label']} \n")
-            f.write(str(row['Sequence']))
-            f.write('\n')
-    outdir = '10-seq-with-34-feature.csv'
-    calc_feat(fastadir, outdir)
+# def test_10_seq():
+#     dfdir = './10sequence.xlsx'
+#     df = pd.read_excel(dfdir).loc[:, ['Sequence', 'label']]
+#     fastadir = '10-seq.fna'
+#     with open(fastadir, 'a') as f:
+#         for index, row in df.iterrows():
+#             f.write(f"> {row['label']} \n")
+#             f.write(str(row['Sequence']))
+#             f.write('\n')
+#     outdir = '10-seq-with-34-feature.csv'
+#     calc_feat(fastadir, outdir)
 
-
-if __name__ == "__main__":
-    test_10_seq()
-    # test_Ecoli()
+# if __name__ == "__main__":
+#     test_10_seq()
+#     # test_Ecoli()

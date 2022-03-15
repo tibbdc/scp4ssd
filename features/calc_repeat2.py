@@ -1,4 +1,13 @@
 #!/home/zhangjq/anaconda3/envs/september/bin/python
+
+'''
+@File    :   calc_repeat1.py
+@Author  :   renshuai
+@Version :   1.0
+@Contact :   rens@tib.cas.cn
+@License :   (C)Copyright 2022-2023, renshuai
+'''
+
 import sys
 import os
 # import pandas as pd

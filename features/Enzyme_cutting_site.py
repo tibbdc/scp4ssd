@@ -1,12 +1,14 @@
 #!/home/zhangjq/anaconda3/envs/september/bin/python
+'''
+@File    :   calc_repeat1.py
+@Author  :   renshuai
+@Version :   1.0
+@Contact :   rens@tib.cas.cn
+@License :   (C)Copyright 2022-2023, renshuai
+'''
+
 import re
-# # import collections
-# import pandas as pd
-# import numpy as np
-# import scipy as sp
-# from IPython.core.display import display
-# import seaborn as sns
-# import warnings
+
 __all__ = [
     "calc_BfaI",
     "calc_MseI",

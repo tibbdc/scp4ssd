@@ -1,6 +1,13 @@
 #!/home/zhangjq/anaconda3/envs/september/bin/python
 # coding=utf-8
-# import pandas as pd
+'''
+@File    :   calc_repeat1.py
+@Author  :   renshuai
+@Version :   1.0
+@Contact :   rens@tib.cas.cn
+@License :   (C)Copyright 2022-2023, renshuai
+'''
+
 import sys 
 sys.path.append("..") 
 from utils.RepeatFinder import call_repeatFinder

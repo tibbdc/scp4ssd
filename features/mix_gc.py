@@ -1,5 +1,15 @@
 #!/home/zhangjq/anaconda3/envs/september/bin/python
 #-*- coding: UTF-8 -*-
+'''
+@File    :   mix_gc.py
+@Time    :   2022/03/15 13:08:21
+@Author  :   zhangjq
+@Version :   1.0
+@Contact :   zhangjq@tib.cas.cn
+@License :   (C)Copyright 2022-2023, zhangjq
+@Desc    :   Enjoy dinner :D
+'''
+
 from collections import Counter
 from Bio.SeqUtils import MeltingTemp as TM
 import re
@@ -23,6 +33,7 @@ __all__ = [
     "calc_i_motifs",
     "calc_patternruns",
 ]
+
 def calc_tm(seq):
     return TM.Tm_NN(seq, dnac1=250.0, saltcorr=7)
 
