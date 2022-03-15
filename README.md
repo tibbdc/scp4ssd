@@ -13,7 +13,7 @@ code of the paper 'SCP4SSD: a Serverless Cloud Platform for the prediction of nu
 1. clone the repo
 
 ```shell
-git clone https://github.com/JustinDoIt/september.git
+git clone https://github.com/JustinDoIt/scp4ssd.git
 ```
 
 2. create the conda env
@@ -25,7 +25,7 @@ conda env create -f name.yml
 or install python packages via pip
 
 ```shell
-cd september
+cd scp4ssd
 pip install -r requirements.txt
 ```
 
@@ -34,7 +34,7 @@ pip install -r requirements.txt
 ## Example
 
 ```shell
-cd september
+cd scp4ssd
 python predict.py
 ```
 
