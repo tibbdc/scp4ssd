@@ -58,7 +58,7 @@ def create_logger(name, silent=False, to_disk=True, log_file=None):
 #      python predict.py --fasta ./examples/example.fna --out example_out.csv        #
 ######################################################################################
 
-def predict(data: pd.DataFrame, return_prob: bool = False):
+def predict(data: pd.DataFrame, return_prob: bool = True):
     clf = load('./models/scp4ssd.joblib')
 
     prediction = np.expand_dims(clf.predict(data), axis=1)
