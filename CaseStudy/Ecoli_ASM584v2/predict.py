@@ -4,16 +4,16 @@ import pandas as pd
 from joblib import load
 from Bio import SeqIO
 
-from september.features.calc_repeat1 import *
-from september.features.calc_repeat2 import *
-from september.features.hairpins import *
+from scp4ssd.features.calc_repeat1 import *
+from scp4ssd.features.calc_repeat2 import *
+from scp4ssd.features.hairpins import *
 # from features.mix_gc import calc_delta_tm, calc_seq_gc_high, calc_seq_gc_low, calc_terminal_high, calc_terminal_low, calc_tm_high, calc_tm_low, calc_delta_gc, calc_g_quad_motifs, calc_i_motifs, calc_patternruns, calc_poly_run, count_gc
 # from features.mix_gc import calc_patternruns, calc_g_quad_motifs,
-from september.features.mix_gc import *
+from scp4ssd.features.mix_gc import *
 # from features.Enzyme_cutting_site import calc_NlaIII,calc_ApaI,calc_MseI,calc_BfaI
-from september.features.Enzyme_cutting_site import *
-from september.features.CpG_island import *
-from september.features.motif import *
+from scp4ssd.features.Enzyme_cutting_site import *
+from scp4ssd.features.CpG_island import *
+from scp4ssd.features.motif import *
 
 import argparse
 
@@ -72,7 +72,7 @@ def predict_fasta(fasta, return_prob=False):
     seqs = [str(seq.seq) for seq in SeqIO.parse(fasta, 'fasta')]
     assert len(seqs) > 0
     data = pd.DataFrame(list(pd.Series(seqs).map(lambda x: _feat_calculator(x))))
-    clf = load('./september.joblib')
+    clf = load('./scp4ssd.joblib')
     if return_prob:
         return clf.predict(data), clf.predict_proba(data)
     return clf.predict_proba(data)

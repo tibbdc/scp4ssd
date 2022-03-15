@@ -29,20 +29,16 @@ cd scp4ssd
 pip install -r requirements.txt
 ```
 
-## Usage
-
-## Example
+## Usage & Example
 
 ```shell
 cd scp4ssd
-python predict.py
+python predict.py --fasta example.fna --out example_out.csv
 ```
-
-see more examples in [/notebook]()
 
 ## Cite us
 
-If this repo
+If this repo help you, happy to cite our paper (coming soon...)
 
 ## License
 
