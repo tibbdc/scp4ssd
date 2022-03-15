@@ -87,8 +87,10 @@ def main():
     # calculate nucleotide sequence features
     df = calc_feat(args.fasta)
 
+    df.to_csv(f'{args.out}_feature.tsv', sep='\t', index=0)
+
     # predict & save result
-    savedir = args.out
+    savedir = args.out + '_prediction.txt'
     with open(savedir, 'w') as f:
         f.write(str(predict(df))) # load model && predict
 
