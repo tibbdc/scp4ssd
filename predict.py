@@ -16,7 +16,7 @@ import numpy as np
 import pandas as pd
 from joblib import load
 
-# from september.features.api import calc_feat
+from features.api import calc_feat
 
 import argparse
 
@@ -58,20 +58,21 @@ def create_logger(name, silent=False, to_disk=True, log_file=None):
 #          python predict.py --fasta example.fna --out example_out.csv                        #
 ######################################################################################
 
-def predict_fasta(datadir: str = './september/features/dachang4318_sep_feat-with-3000bp.csv', return_prob: bool = True):
+def predict_fasta(data: pd.DataFrame, return_prob: bool = False):
     # datadir = os.path.join('./result', re.split('/.', fasta)[-2], 'csv')
     # if not os.path.exists(datadir):
     #     calc_feat(fasta)
-    data = pd.read_csv(datadir)
-    print("Save feature successfully... start predicting...")
+    # data = pd.read_csv(datadir)
+    # print("Save feature successfully... start predicting...")
+    # assert len(data) > 
     clf = load('./september/model/september.joblib')
 
     prediction = np.expand_dims(clf.predict(data), axis=1)
     prob = clf.predict_proba(data)
-    print('-'*50)
-    print(prediction.shape)
-    print(prob.shape)
-    print('-'*50)
+    # print('-'*50)
+    # print(prediction.shape)
+    # print(prob.shape)
+    # print('-'*50)
     if return_prob:    
         return np.concatenate((prediction, prob), axis=1)
     return prediction
@@ -83,6 +84,9 @@ def test_Ecoli_GCF_ASM584v2():
     outdir = f'dachang4138_prediction.txt'
     # if not os.path.exists(outdir):
     #     os.makedirs(outdir)
+    fasta = './examples/example.fna'
+
+    datadir = './september/features/dachang4318_sep_feat-with-3000bp.csv'
     
     pd.DataFrame(predict_fasta()).to_csv(outdir)
     print("Successfully saved.")
@@ -104,10 +108,14 @@ def parse_args():
 def main():
     # read args
     args = parse_args()
-    # save result
+
+    # calculate nucleotide sequence features
+    df = calc_feat(args.fasta)
+
+    # predict & save result
     savedir = args.out
     with open(savedir, 'w') as f:
-        f.write(str(predict_fasta(args.fasta))) # load model && predict
+        f.write(str(predict_fasta(df))) # load model && predict
 
 if __name__ == "__main__":
     test_Ecoli_GCF_ASM584v2()

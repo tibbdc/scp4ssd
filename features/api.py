@@ -11,22 +11,25 @@
 '''
 import re
 import pandas as pd
-from pandarallel import pandarallel
+# from pandarallel import pandarallel
 
 from Bio import SeqIO
 
-from calc_repeat1 import calc_repeat
-from calc_repeat2 import seq_assess_repeat
-from hairpins import seq_assess_hairpin
+# import sys 
+# sys.path.append("./") 
+
+from features.calc_repeat1 import calc_repeat
+from features.calc_repeat2 import seq_assess_repeat
+from features.hairpins import seq_assess_hairpin
 # from features.mix_gc import calc_delta_tm, calc_seq_gc_high, calc_seq_gc_low, calc_terminal_high, calc_terminal_low, calc_tm_high, calc_tm_low, calc_delta_gc, calc_g_quad_motifs, calc_i_motifs, calc_patternruns, calc_poly_run, count_gc
 # from features.mix_gc import calc_patternruns, calc_g_quad_motifs,
-from mix_gc import calc_tm_low, calc_seq_gc_low, calc_i_motifs, count_gc, calc_tm_high, calc_delta_gc, calc_terminal_low
+from features.mix_gc import calc_tm_low, calc_seq_gc_low, calc_i_motifs, count_gc, calc_tm_high, calc_delta_gc, calc_terminal_low
 # from features.Enzyme_cutting_site import calc_NlaIII,calc_ApaI,calc_MseI,calc_BfaI
-from Enzyme_cutting_site import calc_EagI, calc_BbrPI, calc_AfaI, calc_BanIII, calc_BshTI, calc_BbeI, calc_AsuII, calc_ClaI, calc_AatI, calc_EgeI, calc_ApaLI, calc_ApaI, calc_FspI
+from features.Enzyme_cutting_site import calc_EagI, calc_BbrPI, calc_AfaI, calc_BanIII, calc_BshTI, calc_BbeI, calc_AsuII, calc_ClaI, calc_AatI, calc_EgeI, calc_ApaLI, calc_ApaI, calc_FspI
 # from CpG_island import *
 # from motif import *
 
-pandarallel.initialize(nb_workers=80)
+# pandarallel.initialize(nb_workers=80)
 
 def _feat_calculator(seq: str):
     """In the future, we will plan to optimize the API design of feature_calculator."""
@@ -75,15 +78,21 @@ def _feat_calculator(seq: str):
             }
     )
 
-def calc_feat(fasta: str, outdir=None):
+def calc_feat(fasta: str, outdir=None, parallel=False):
     # seqs = [str(seq.seq) for seq in SeqIO.parse(fasta, 'fasta') if len(seq) < 3000]
     seqs = [str(seq.seq) for seq in SeqIO.parse(fasta, 'fasta')]
     assert len(seqs) > 0
-    data = pd.DataFrame(list(pd.Series(seqs).parallel_map(lambda x: _feat_calculator(x))))
+
+    if parallel:
+        data = pd.DataFrame(list(pd.Series(seqs).parallel_map(lambda x: _feat_calculator(x))))
+    else:
+        data = pd.DataFrame(list(pd.Series(seqs).map(lambda x: _feat_calculator(x))))
+    
     if outdir is not None:
         # outdir = re.split('/.', fasta)[-2] # FIXME: BUG: ata
         data.to_csv(outdir, index=0)
-        print(f"{outdir} saved.")
+    
+    return data
 
 def write_csv_to_fna():
     dfdir = '../../CaseStudy/SSC_DC4318.csv'

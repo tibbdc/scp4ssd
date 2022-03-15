@@ -4,6 +4,9 @@ import pandas as pd
 from joblib import load
 from Bio import SeqIO
 
+import sys 
+sys.path.append("") 
+
 from scp4ssd.features.calc_repeat1 import *
 from scp4ssd.features.calc_repeat2 import *
 from scp4ssd.features.hairpins import *
