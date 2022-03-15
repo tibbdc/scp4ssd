@@ -1,6 +1,6 @@
 code of the paper 'SCP4SSD: a Serverless Cloud Platform for the prediction of nucleotide Sequence Synthesis Difficulty'
 <h1 align="center">
-  <a href="#"><img src="./imgs/architecture.png" alt="Logo of Program" width="200"></a>
+  <a href="#"><img src="./imgs/architecture.png" alt="Logo of Program" width="400"></a>
   <br>
     DNA Synthesis Difficulty Prediction
   <br>
