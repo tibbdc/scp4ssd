@@ -43,6 +43,13 @@ conda env create -f environment.yml
 conda activate scp4ssd
 ```
 
+4. Install auto-sklearn
+```shell
+conda install auto-sklearn=0.14.6 -c conda-forge
+```
+
+([Offical Installation](https://automl.github.io/auto-sklearn/master/installation.html))
+
 ## Usage & Example
 
 ```shell
