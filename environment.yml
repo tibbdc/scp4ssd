@@ -1,5 +1,6 @@
-name: auto-sklearn
+name: scp4ssd
 channels:
+  - https://levinthal:paradox@conda.graylab.jhu.edu
   - conda-forge
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
@@ -304,4 +305,3 @@ dependencies:
     - widgetsnbextension==3.5.2
     - xmltodict==0.12.0
     - zipp==3.7.0
-prefix: /home/zhangjq/anaconda3/envs/auto-sklearn
