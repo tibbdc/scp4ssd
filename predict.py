@@ -97,7 +97,7 @@ def main():
     # df.to_csv(f'{args.out}_feature.tsv', sep='\t', index=0)
     df['isEasySynthesis'] = predict(df)
     df['seq'] = pd.DataFrame([str(seq.seq) for seq in SeqIO.parse(args.fasta, 'fasta')])
-
+    df['description'] = pd.DataFrame([str(seq.description) for seq in SeqIO.parse(args.fasta, 'fasta')])
     # predict & save result
     df.to_csv(args.out, index=0)
     # savedir = args.out + '_prediction.txt'
