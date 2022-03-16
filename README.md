@@ -15,8 +15,8 @@ code of the paper 'SCP4SSD: a Serverless Cloud Platform for the prediction of nu
   <!-- <a href="#requirements">Requirements</a>  • -->
   <a href="#installation">Installation</a> •
   <a href="#usage & example">Usage & Example</a>               •
-  <a href="#how-it-works">How it Works</a> •
-  <a href="#cite us">Thanks ❤</a>
+  <!-- <a href="#how-it-works">How it Works</a> • -->
+  <a href="#cite us">Cite us ❤</a>
 </p>
 
 ## Introduction
