@@ -16,6 +16,8 @@ import numpy as np
 import pandas as pd
 from joblib import load
 
+from Bio import SeqIO
+
 from features.api import calc_feat
 
 import argparse
@@ -58,11 +60,16 @@ def create_logger(name, silent=False, to_disk=True, log_file=None):
 #      python predict.py --fasta ./examples/example.fna --out example_out.csv        #
 ######################################################################################
 
-def predict(data: pd.DataFrame, return_prob: bool = True):
+def predict(data: pd.DataFrame, return_prob: bool = False):
     clf = load('./models/scp4ssd.joblib')
 
     prediction = np.expand_dims(clf.predict(data), axis=1)
     
+    # print(clf.predict(data))
+    # print(len(clf.predict(data)))
+    # print(prediction)
+    # print(len(prediction))
+
     if return_prob:
         prob = clf.predict_proba(data)
         return np.concatenate((prediction, prob), axis=1)
@@ -76,7 +83,7 @@ def parse_args():
         '--out', '-o', help='output csv file name', required=True)
     parser.add_argument(
         '--verb', '-v', help='(opt) shows program progress', default=False, required=False)
-    # parser.add_argument("--help", '-h', description="")
+    # parser.add_argument("--help", '-h', descriptions="python predict.py --fasta ./examples/example.fna --out ./examples/example_out.csv")
 
     return parser.parse_args()
 
@@ -87,12 +94,15 @@ def main():
     # calculate nucleotide sequence features
     df = calc_feat(args.fasta)
 
-    df.to_csv(f'{args.out}_feature.tsv', sep='\t', index=0)
+    # df.to_csv(f'{args.out}_feature.tsv', sep='\t', index=0)
+    df['isEasySynthesis'] = predict(df)
+    df['seq'] = pd.DataFrame([str(seq.seq) for seq in SeqIO.parse(args.fasta, 'fasta')])
 
     # predict & save result
-    savedir = args.out + '_prediction.txt'
-    with open(savedir, 'w') as f:
-        f.write(str(predict(df))) # load model && predict
+    df.to_csv(args.out, index=0)
+    # savedir = args.out + '_prediction.txt'
+    # with open(savedir, 'w') as f:
+    #     f.write(str(predict(df))) # load model && predict
 
 if __name__ == "__main__":
     # test_Ecoli_GCF_ASM584v2()
