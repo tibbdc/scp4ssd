@@ -41,10 +41,10 @@ def _feat_calculator(seq: str):
     longest_repeat = result["longest_repeat"]
 
     return pd.Series(data={
-            'richest_hairpin': float(assess2.richest_hairpin),
+            # 'richest_hairpin': float(assess2.richest_hairpin),
             'Tm_low': float(calc_tm_low(seq, 20)),
             'repeat_9_metric': float(assess.repeat9),
-            'longest_repeat': float(longest_repeat),
+            # 'longest_repeat': float(longest_repeat),
             'FspI': float(calc_FspI(seq)),
             'high_total_density': float(assess.high_total_density),
             'GC_long_l': float(calc_seq_gc_low(seq, window_length=100)),
@@ -71,7 +71,7 @@ def _feat_calculator(seq: str):
             'AfaI': float(calc_AfaI(seq)),
             'GC_term_l': float(calc_terminal_low(seq, 50)),
             'total_GC': float(count_gc(seq)),
-            'Tm_high': float(calc_tm_high(seq, 20)),
+            # 'Tm_high': float(calc_tm_high(seq, 20)),
             'BbrPI': float(calc_BbrPI(seq)),
             'dGC': float(calc_delta_gc(seq, 20)),
             'EagI': float(calc_EagI(seq)),
